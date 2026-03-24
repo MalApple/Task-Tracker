@@ -1,3 +1,4 @@
+#A command line interface (CLI) to track what I need to do, what I have done, and what I am currently working on. 
 import sys
 from datetime import datetime
 import json
@@ -5,6 +6,7 @@ import os
 
 FILE = "tasks.json"
 
+#Loads JSON file and creates new one if not found
 def load_task():
     if not os.path.exists(FILE):
         return []
@@ -15,15 +17,15 @@ def load_task():
         except:
             return []
 
+#Opens FILE in write mode and saves the "whole" list
 def save_tasks(task):    
     with open(FILE, 'w') as f:
         json.dump(task, f, indent = 4)
 
 
-
+#Function that handles user inputs
 def userInput():
 
-    #print(sys.argv)
     command = sys.argv[1]
 
     ##Basic add and delete user input cases##
@@ -41,6 +43,7 @@ def userInput():
 
         print(f"Added: {sys.argv[2]}")
 
+        #Debug
         # print(f"id: {new_task['id']}\n"
         #       f"Description: {new_task['description']}\n"
         #       f"Status: {new_task['status']}\n"
@@ -67,8 +70,6 @@ def userInput():
             return
         else:
             print("Did not enter a valid reply")
-
-
 
     ##User inputs relating to maintaining the todo list##
     elif command == "update":
