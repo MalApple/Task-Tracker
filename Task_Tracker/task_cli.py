@@ -6,6 +6,7 @@ import os
 
 FILE = "tasks.json"
 
+
 #Loads JSON file and creates new one if not found
 def load_task():
     if not os.path.exists(FILE):
@@ -24,8 +25,12 @@ def save_tasks(task):
 
 
 #Function that handles user inputs
-def userInput():
+def userInput(to_do):
 
+    if len(sys.argv) < 2:
+        print("Usage: python task_cli.py <command>")
+        return
+    
     command = sys.argv[1]
 
     ##Basic add and delete user input cases##
@@ -63,11 +68,15 @@ def userInput():
 
     elif command == "clearlist":
         print("Do you wish to delete the whole list? Y/N?")
-        if input() == 'Y':
-            os.remove("tasks.json")
+        choice = input().strip().upper()
+        if choice == 'Y':
+            if os.path.exists(FILE):
+                os.remove(FILE)
             print("List deleted")
-        elif input() == 'N':
+
+        elif choice == 'N':
             return
+
         else:
             print("Did not enter a valid reply")
 
@@ -76,7 +85,7 @@ def userInput():
         for task in to_do:
             if task["id"] == int(sys.argv[2]):
                 task["description"] = sys.argv[3]
-                task["updatede_at"] = str(datetime.now())
+                task["updated_at"] = str(datetime.now())
                 save_tasks(to_do)
 
                 print(f"Updated task to: {sys.argv[3]}")
@@ -102,13 +111,22 @@ def userInput():
             if task["id"] == int(sys.argv[2]):
                 task["status"] = "in-progress"
                 save_tasks(to_do)
+                print("Task marked as in-progress")
+                return
 
     elif command == "mark-done":
         for task in to_do:
             if task["id"] == int(sys.argv[2]):
                 task["status"] = "done"
                 save_tasks(to_do)
+                print("Task marked as done")
+                return
 
 
-to_do = load_task()
-userInput()
+
+def main():
+    to_do = load_task()
+    userInput(to_do)
+
+if __name__ == "__main__":
+    main()
