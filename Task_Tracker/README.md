@@ -1,7 +1,15 @@
 # Task-Tracker
-A command line interface (CLI) to track what I need to do, what I have done, and what I am currently working on.
+A simple command-line application to track tasks, including what you need to do, what you're currently working on, and what you've completed.
 
-Data is sotred in dictonary format in a local JSON file which is created if there is none initially. This file is updated everytime a new item is altered. Using clearlist will delete this JSON file.
+# Features 
+-Add, update, and delete tasks
+-Mark tasks as:
+    to do
+    in-progress
+    done
+-View all tasks or filter by status
+-Persistent storage using a local JSON file
+-Automatically creates a data file if none exists
 
 # How to use
 Add item:
@@ -24,3 +32,6 @@ List of items:
     python task_cli.py list
     python task_cli.py list done
     python task_cli.py list in-progress 
+
+# Requirments
+Python 3.x
