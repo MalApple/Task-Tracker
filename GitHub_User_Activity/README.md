@@ -13,12 +13,12 @@ A simple command-line application that fetches and displays a GitHub user's rece
 # Usage
 Run the program from the command line and provide a GitHub username:  
 
-python GitHub_cli.py <username>  
+`python GitHub_cli.py <username>`  
 
 Example:  
-   - python GitHub_cli.py myUserName
+`python GitHub_cli.py myUserName`
 
 # Requirments
 Python 3.9+ (required for zoneinfo)  
 Have tzdata (windows):     
-    pip install tzdata
+`pip install tzdata`
